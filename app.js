@@ -1,22 +1,29 @@
-const API_LISTINGS = "/.netlify/functions/listings";
-const API_CONTACT = "/.netlify/functions/contact";
+// Em vez de chamar Netlify Function, vamos ler um arquivo JSON estático
+const API_LISTINGS = "listings.json";
 
 let allListings = [];
 
+// Carrega os imóveis do arquivo JSON
 async function carregarImoveis() {
   try {
     const res = await fetch(API_LISTINGS);
+    console.log("Status da API:", res.status);
+
     if (!res.ok) throw new Error("Falha ao carregar imóveis");
+
     const data = await res.json();
+    console.log("Dados recebidos da API:", data);
+
     allListings = data;
     renderizarImoveis(data);
   } catch (err) {
-    console.error(err);
+    console.error("Erro no carregarImoveis:", err);
     const container = document.getElementById("listings-container");
     container.innerHTML = "<p>Erro ao carregar imóveis.</p>";
   }
 }
 
+// RENDERIZAÇÃO DOS CARDS (COM IMAGEM)
 function renderizarImoveis(listings) {
   const container = document.getElementById("listings-container");
   if (!listings.length) {
@@ -30,13 +37,20 @@ function renderizarImoveis(listings) {
     card.className = "card";
 
     card.innerHTML = `
+      <div class="card-image">
+        <img src="${item.imagem}" alt="${item.titulo}">
+      </div>
       <div class="card-header">
         <div class="card-title">${item.titulo}</div>
         <div class="card-location">${item.cidade} - ${item.bairro}</div>
       </div>
       <div class="card-body">
         <p>${item.descricao}</p>
-        <p><strong>${item.quartos}</strong> quartos • <strong>${item.banheiros}</strong> banheiros • <strong>${item.vaga_garagem ? "1 vaga" : "Sem vaga"}</strong></p>
+        <p>
+          <strong>${item.quartos}</strong> quartos •
+          <strong>${item.banheiros}</strong> banheiros •
+          <strong>${item.vaga_garagem ? "1 vaga" : "Sem vaga"}</strong>
+        </p>
         <p>Tipo: <strong>${item.tipo}</strong></p>
       </div>
       <div class="card-footer">
@@ -93,10 +107,18 @@ const inputImovelId = document.getElementById("imovel-id");
 const contactForm = document.getElementById("contact-form");
 const contactStatus = document.getElementById("contact-status");
 
+// ABRIR MODAL COM MAIS DETALHES + TELEFONE
 function abrirModalContato(imovel) {
-  modalInfo.textContent = `${imovel.titulo} - ${imovel.cidade}/${imovel.bairro} - R$ ${imovel.preco.toLocaleString(
-    "pt-BR"
-  )}`;
+  modalInfo.innerHTML = `
+    <strong>${imovel.titulo}</strong><br>
+    ${imovel.cidade} - ${imovel.bairro}<br>
+    ${imovel.descricao}<br>
+    Quartos: <strong>${imovel.quartos}</strong> • 
+    Banheiros: <strong>${imovel.banheiros}</strong> • 
+    ${imovel.vaga_garagem ? "Com vaga de garagem" : "Sem vaga de garagem"}<br>
+    Tipo: <strong>${imovel.tipo}</strong><br>
+    <strong>Telefone para contato:</strong> ${imovel.telefone}
+  `;
   inputImovelId.value = imovel.id;
   contactStatus.textContent = "";
   modal.classList.remove("hidden");
@@ -111,37 +133,20 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) fecharModalContato();
 });
 
+// Simulação de envio de contato (sem backend)
 contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   contactStatus.textContent = "Enviando...";
-  try {
-    const payload = {
-      imovel_id: inputImovelId.value,
-      nome: document.getElementById("nome").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      mensagem: document.getElementById("mensagem").value.trim(),
-    };
 
-    const res = await fetch(API_CONTACT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) throw new Error("Falha ao enviar contato");
-    contactStatus.textContent = "Contato enviado com sucesso!";
+  setTimeout(() => {
+    contactStatus.textContent = "Contato registrado! (simulado)";
     contactForm.reset();
-  } catch (err) {
-    console.error(err);
-    contactStatus.textContent = "Erro ao enviar. Tente novamente.";
-  }
+  }, 800);
 });
 
 /* Eventos dos filtros */
-
 document.getElementById("btn-filtrar").addEventListener("click", aplicarFiltros);
 document.getElementById("btn-limpar").addEventListener("click", limparFiltros);
 
 /* Inicialização */
-
 carregarImoveis();

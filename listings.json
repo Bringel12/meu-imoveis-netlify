@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "titulo": "Apartamento mobiliado 2 quartos",
+    "cidade": "Blumenau",
+    "bairro": "Centro",
+    "descricao": "Apartamento próximo a mercados, bancos e transporte público.",
+    "quartos": 2,
+    "banheiros": 1,
+    "vaga_garagem": true,
+    "tipo": "apartamento",
+    "preco": 2200,
+    "imagem": "img/apto1.jpg",
+    "telefone": "(47) 99999-0001"
+  },
+  {
+    "id": 2,
+    "titulo": "Casa ampla com quintal",
+    "cidade": "Blumenau",
+    "bairro": "Velha",
+    "descricao": "Casa com amplo quintal e área de festas.",
+    "quartos": 3,
+    "banheiros": 2,
+    "vaga_garagem": true,
+    "tipo": "casa",
+    "preco": 2800,
+    "imagem": "img/casa1.jpg",
+    "telefone": "(47) 99999-0002"
+  },
+  {
+    "id": 3,
+    "titulo": "Kitnet compacta",
+    "cidade": "Florianópolis",
+    "bairro": "Trindade",
+    "descricao": "Ideal para estudante, perto da universidade.",
+    "quartos": 1,
+    "banheiros": 1,
+    "vaga_garagem": false,
+    "tipo": "apartamento",
+    "preco": 1500,
+    "imagem": "img/kitnet1.jpg",
+    "telefone": "(48) 98888-0003"
+  }
+]
