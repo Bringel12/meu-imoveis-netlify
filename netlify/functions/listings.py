@@ -12,7 +12,10 @@ def handler(event, context):
             "banheiros": 1,
             "vaga_garagem": True,
             "tipo": "apartamento",
-            "preco": 2200
+            "preco": 2200,
+            # imagem vinda da internet (URL completa)
+            "imagem": "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
+            "telefone": "(47) 99999-0001"
         },
         {
             "id": 2,
@@ -24,7 +27,9 @@ def handler(event, context):
             "banheiros": 2,
             "vaga_garagem": True,
             "tipo": "casa",
-            "preco": 2800
+            "preco": 2800,
+            "imagem": "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+            "telefone": "(47) 99999-0002"
         },
         {
             "id": 3,
@@ -36,7 +41,9 @@ def handler(event, context):
             "banheiros": 1,
             "vaga_garagem": False,
             "tipo": "apartamento",
-            "preco": 1500
+            "preco": 1500,
+            "imagem": "https://images.pexels.com/photos/2090641/pexels-photo-2090641.jpeg",
+            "telefone": "(48) 98888-0003"
         }
     ]
 

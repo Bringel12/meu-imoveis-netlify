@@ -1,9 +1,9 @@
-// Em vez de chamar Netlify Function, vamos ler um arquivo JSON estático
+
 const API_LISTINGS = "listings.json";
 
 let allListings = [];
 
-// Carrega os imóveis do arquivo JSON
+
 async function carregarImoveis() {
   try {
     const res = await fetch(API_LISTINGS);
@@ -23,7 +23,6 @@ async function carregarImoveis() {
   }
 }
 
-// RENDERIZAÇÃO DOS CARDS (COM IMAGEM)
 function renderizarImoveis(listings) {
   const container = document.getElementById("listings-container");
   if (!listings.length) {
@@ -107,7 +106,7 @@ const inputImovelId = document.getElementById("imovel-id");
 const contactForm = document.getElementById("contact-form");
 const contactStatus = document.getElementById("contact-status");
 
-// ABRIR MODAL COM MAIS DETALHES + TELEFONE
+
 function abrirModalContato(imovel) {
   modalInfo.innerHTML = `
     <strong>${imovel.titulo}</strong><br>
@@ -133,7 +132,7 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) fecharModalContato();
 });
 
-// Simulação de envio de contato (sem backend)
+
 contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   contactStatus.textContent = "Enviando...";
