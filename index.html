@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aluguel de Casas e Apartamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Imóveis para Alugar</h1>
+      <p>Casas e apartamentos disponíveis para locação.</p>
+    </header>
+
+    <main class="container">
+      <section class="filters">
+        <h2>Filtros</h2>
+        <div class="filter-group">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" placeholder="Ex: Blumenau" />
+        </div>
+
+        <div class="filter-group">
+          <label for="tipo">Tipo</label>
+          <select id="tipo">
+            <option value="">Todos</option>
+            <option value="apartamento">Apartamento</option>
+            <option value="casa">Casa</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="preco-max">Preço máximo (R$)</label>
+          <input type="number" id="preco-max" placeholder="Ex: 2500" />
+        </div>
+
+        <button id="btn-filtrar">Filtrar</button>
+        <button id="btn-limpar">Limpar</button>
+      </section>
+
+      <section class="listings">
+        <h2>Resultados</h2>
+        <div id="listings-container" class="cards">
+        
+        </div>
+      </section>
+    </main>
+
+    <div id="contact-modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <h2>Enviar interesse</h2>
+        <p id="modal-imovel-info"></p>
+        <form id="contact-form">
+          <input type="hidden" id="imovel-id" />
+          <div class="form-group">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" rows="4" required>
+Tenho interesse neste imóvel. Pode me enviar mais detalhes?</textarea>
+          </div>
+          <button type="submit">Enviar</button>
+          <p id="contact-status" class="status-msg"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
